@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apology Page</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to right, #FFD700, #FF6347);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+    }
+    #apologyContainer {
+      font-size: 24px;
+      color: #000;
+      text-align: center;
+      padding: 30px;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+    button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="apologyContainer">
+    <p id="question">Are you angry with Utkarsh?</p>
+    <button onclick="respond('yes')">Yes</button>
+    <button onclick="respond('no')">No</button>
+  </div>
+
+  <script>
+    let punchCount = 0;
+
+    function respond(answer) {
+      const apologyContainer = document.getElementById('apologyContainer');
+      const question = document.getElementById('question');
+
+      if (answer === 'yes') {
+        question.innerHTML = "I knew it, he always makes me angry too. Do you wanna punch him?";
+        apologyContainer.innerHTML = "<button onclick='punchUtkarsh()'>Punch Utkarsh</button>";
+      } else {
+        apologyContainer.innerHTML = "Phew! I'm glad. Let's keep the smiles going!";
+      }
+    }
+
+    function punchUtkarsh() {
+      punchCount++;
+      const apologyContainer = document.getElementById('apologyContainer');
+
+      if (punchCount <= 2) {
+        apologyContainer.innerHTML = "Punch harder! <button onclick='punchUtkarsh()'>Punch Utkarsh</button>";
+      } else if (punchCount <= 10) {
+        apologyContainer.innerHTML = `Your punches have no power. Punch a little harder! (${punchCount} punches)<button onclick='punchUtkarsh()'>Punch Utkarsh</button>`;
+      } else {
+        apologyContainer.innerHTML = "I think this is enough. His teeth are broken, and he is crying. He says he loves you. Do you forgive him?";
+        apologyContainer.innerHTML += "<button onclick='forgive()'>Forgive</button> <button onclick='dontForgive()'>Don't Forgive</button>";
+      }
+    }
+
+    function forgive() {
+      const apologyContainer = document.getElementById('apologyContainer');
+      apologyContainer.innerHTML = "I love you ❤️";
+    }
+
+    function dontForgive() {
+      const apologyContainer = document.getElementById('apologyContainer');
+      apologyContainer.innerHTML = "I love you 💔<br>I will keep trying.";
+    }
+  </script>
+</body>
+</html>
